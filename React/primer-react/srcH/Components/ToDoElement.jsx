@@ -1,4 +1,6 @@
-import React from 'react';
+
+
+import React from 'react'
 
 export default function ToDoElement({task, toggleToDo}) {
   
@@ -13,7 +15,7 @@ export default function ToDoElement({task, toggleToDo}) {
     return (
     
         <li
-            key={id} //{id} hace uso de variables javascript de arriba
+            key={id}
             className="list-group-item"
         >
             <input type="checkbox" checked={completed} onChange={handleCompleted}></input>

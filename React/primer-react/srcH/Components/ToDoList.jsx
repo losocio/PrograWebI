@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import ToDoElement from './ToDoElement';
 
 export default function ToDoList({elementos, toggleToDo}) {
@@ -12,17 +12,23 @@ export default function ToDoList({elementos, toggleToDo}) {
             <li key={elemento.id}>{elemento.tarea}</li>
         ))}
     </ul>
+
+        <ul class="list-group">
+          <li class="list-group-item">An item</li>
+          <li class="list-group-item">A second item</li>
+          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">A fourth item</li>
+          <li class="list-group-item">And a fifth one</li>
+        </ul>
+
   ) */
 
-          //metiendo entre {} podemos usar codigo javasript
   return(
-    <ul className = "list-group">
+    <ul className="list-group">
         {elementos.map((elemento)=> (
             <ToDoElement task={elemento} toggleToDo={toggleToDo} />
-        ))} 
+        ))}
     </ul>
   );
-//Antes era asi:
-//<ToDoElement key={elemento.id} task={elemento} toggleToDo={toggleToDo} />
+
 }
-//TODO si creo una funcion dentro de la funcion del componente se usan las arrow function por convencion

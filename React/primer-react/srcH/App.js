@@ -5,32 +5,23 @@ import {v4} from 'uuid';
 
 import axios from 'axios';
 import Header from './Components/Header';
-//useRef para capturar cosas del user, useEffect para cuando se carge la pag llame a algo
 
 function App() {
 
-  /* Ya no lo vamos a necesitar (hardcoded) porque lo tomaremos del input del usuario
-    const array = [{id:1, tarea:"ir a clase", completed:false },
-                  {id:2, tarea:"no saltarme clase", completed:false}];
-  */
+/* Ya no lo vamos a necesitar (hardcoded) porque lo tomaremos del input del usuario
+  const array = [{id:1, tarea:"ir a clase", completed:false },
+                 {id:2, tarea:"no saltarme clase", completed:false}];
+*/
 
   //Usamos useRef para capturar en listaRef el texto introducido por el usuario en "input ref={listaRef}
   const listaRef = useRef();
  
   //Inicializamos nuestra varible de estado con un array vacío "[]"
   const [listaElementos, setListaElementos] = useState([]);
-  
-  //Debajo de las variables de estado
-  //cuando carge toda la pag ejecuta handleLoadData()
+ 
   useEffect(() => {
     handleLoadData();
   }, []);
-  /* 
-  //se ejecuta al cargar la pagina
-  useEffect(() => {
-    handleLoadData();
-  }, []);
-  */
 
   //Implementaremos después el campo "completed": true | false
   const handleClear = ()=>{
@@ -82,34 +73,33 @@ function App() {
   }
 
   const copyToDos = (data) => {
-    const newTasks = data.map(function(task){
+
+    const newTasks = data.map(function (task){
+
       return {id: task.id, tarea: task.title, completed: task.completed};
+
     });
+
     setListaElementos(newTasks);
+
   }
 
-  //el div de abajo es cosa de bootstrap
   return (
     <>
       <Header />
-      <div className='container mt-5'> 
+      <div className='container mt-5'>
         <ToDoList elementos = {listaElementos} toggleToDo={toggleToDo} />
         <div class="input-group mb-3">
           <input className='form-control mt-4' ref={listaRef} type="text" placeholder="Introduce tu tarea: "/>
         </div>
-        <button type="button" className="btn btn-primary m-2" onClick={handleAddList}>➕</button>
-        <button type="button" className="btn btn-primary" onClick={handleClear}>➖</button>
-        <p class = 'text-center fs-4 mt-4'>Tareas por completar: {listaElementos.filter(elem => !elem.completed).length}</p>
+        <button type="button" class="btn btn-primary m-2" onClick={handleAddList}>➕</button>
+        <button type="button" class="btn btn-primary" onClick={handleClear}>➖</button>
+        <p class="text-center fs-4 mt-4">Tareas por completar: {listaElementos.filter(elemento => !elemento.completed).length}</p>
       </div>
     </>
   );
 }
-//<button onClick={handleLoadData}>➖</button>
-//en vez de <Fragment>...</Fragment> se puede poner <>...</>
 
 //listaref referencia es como ID
 //const [lista, setLista] es como java get set atttr priv no modificable sin acceder a esa funcion (variable state)
-
-//TODA VARIABLE QUE DEPENDA DEL USER USAMOS VARIABLES DE ESTADO linea 17
-
 export default App;
