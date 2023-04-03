@@ -13,15 +13,15 @@ export default function ToDoList({elementos, toggleToDo}) {
         ))}
     </ul>
   ) */
-
-          //metiendo entre {} podemos usar codigo javasript
-  return(
-    <ul className = "list-group">
-        {elementos.map((elemento)=> (
-            <ToDoElement task={elemento} toggleToDo={toggleToDo} />
-        ))} 
-    </ul>
-  );
+  //console.log(typeof elementos);
+    //metiendo entre {} podemos usar codigo javasript
+    return(
+        <ul className = "list-group">
+            {elementos.map((elemento)=> (
+                <ToDoElement task={elemento} toggleToDo={toggleToDo} />
+            ))} 
+        </ul>
+    );
 //Antes era asi:
 //<ToDoElement key={elemento.id} task={elemento} toggleToDo={toggleToDo} />
 }

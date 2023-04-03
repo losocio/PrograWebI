@@ -1,0 +1,21 @@
+body {
+    background-color: aqua;
+}
+
+.button {
+    background: green;
+    color: lime;
+    float: left;
+    padding: 10px; 
+    
+
+    margin: 30px;
+}
+
+.header {
+    background: lime;
+}
+
+ul {
+    background: teal;
+}

@@ -25,12 +25,7 @@ function App() {
   useEffect(() => {
     handleLoadData();
   }, []);
-  /* 
-  //se ejecuta al cargar la pagina
-  useEffect(() => {
-    handleLoadData();
-  }, []);
-  */
+  
 
   //Implementaremos después el campo "completed": true | false
   const handleClear = ()=>{
@@ -39,18 +34,20 @@ function App() {
   };
 
   //Asignamos a la constante "elemento" el valor capturado en listaRef (input del usuario)
-  const handleAddList = ()=>{
+  const handleAddList = () => {
     const elemento = listaRef.current.value;
     if(elemento !== ""){
       //Si el texto introducido por el usuario no es vacío, añadimos a la lista actual "...listaActual", la nueva tarea introducida en la variable elemento.
       setListaElementos((listaActual)=>{
-        return [...listaActual, {id:v4(), tarea: elemento, completed:false }];
+        const sasa = [...listaActual, {id:v4(), tarea: elemento, completed:false }];
+        console.log(sasa);
+        return sasa;
       });
     }
     listaRef.current.value = "";
   };
 
-  const toggleToDo = (id) =>{
+  const toggleToDo = (id) => {
 
     // Nos copiamos la lista de elementos
     const listCopy = [...listaElementos];
@@ -74,15 +71,15 @@ function App() {
       //data: {} -> Datos en caso de ser petición POST
 
     }).then(function (response){
-
+      
       copyToDos(response.data);
 
     });
 
   }
 
-  const copyToDos = (data) => {
-    const newTasks = data.map(function(task){
+  const copyToDos = (data) => { //Esta funcion solamente cambia los campos del objeto, no tiene mucho sentido a mi parecer
+    const newTasks = data.map((task) => {
       return {id: task.id, tarea: task.title, completed: task.completed};
     });
     setListaElementos(newTasks);
@@ -94,12 +91,12 @@ function App() {
       <Header />
       <div className='container mt-5'> 
         <ToDoList elementos = {listaElementos} toggleToDo={toggleToDo} />
-        <div class="input-group mb-3">
+        <div className ="input-group mb-3">
           <input className='form-control mt-4' ref={listaRef} type="text" placeholder="Introduce tu tarea: "/>
         </div>
         <button type="button" className="btn btn-primary m-2" onClick={handleAddList}>➕</button>
         <button type="button" className="btn btn-primary" onClick={handleClear}>➖</button>
-        <p class = 'text-center fs-4 mt-4'>Tareas por completar: {listaElementos.filter(elem => !elem.completed).length}</p>
+        <p className = 'text-center fs-4 mt-4'>Tareas por completar: {listaElementos.filter(elem => !elem.completed).length}</p>
       </div>
     </>
   );

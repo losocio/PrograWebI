@@ -1,0 +1,21 @@
+body {
+    background-color: aqua;
+}
+
+#activar {
+    background-color: red;
+}
+
+#parar {
+    background: blue;
+}
+
+.boton {
+    background: green;
+    color: lime;
+    float: left;
+    padding: 10px 50px 100px 15px; 
+    
+
+    margin: 30px;
+}
